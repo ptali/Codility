@@ -1,29 +1,27 @@
 package codility.arrays.oddOccurrencesInArray;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Solution {
 
-    public int[] solution(int[] A, int K) {
+    public int solution(int[] A) {
 
-        if (A.length == 0) {
-            return A;
-        }
+        int result = A[0];
+        Set<Integer> set = new HashSet<>();
 
-        int[] result = new int[A.length];
-        int moves = (K % A.length);
-
-        if (moves == 0) {
-            return A;
-        }
-
-        for (int i = 0; i < A.length; i++) {
-            if (A.length - moves + i >= A.length) {
-                result[i] = A[i - moves];
-            } else {
-                result[i] = A[A.length - moves + i];
+        for (int i : A) {
+            if (set.contains(i)) {
+                set.remove(i);
+                continue;
             }
+            set.add(i);
         }
+
+        //there's only one value in the set
+        for (int value : set) {
+            result = value;
+        }
+
         return result;
     }
 }
