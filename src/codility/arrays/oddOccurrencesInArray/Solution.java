@@ -4,22 +4,24 @@ import java.util.Arrays;
 
 public class Solution {
 
-    public int solution(int[] A) {
+    public int[] solution(int[] A, int K) {
 
-        int result = A[0];
-        Arrays.sort(A);
+        if (A.length == 0) {
+            return A;
+        }
 
-        int duplicate = 1;
+        int[] result = new int[A.length];
+        int moves = (K % A.length);
 
-        for (int i = 0; i < A.length - 1; i++) {
-            if (A[i] == A[i + 1]) {
-                duplicate++;
-            } else if (duplicate % 2 == 0) {
-                duplicate = 1;
-                if (i == A.length - 2)
-                    return A[A.length - 1];
+        if (moves == 0) {
+            return A;
+        }
+
+        for (int i = 0; i < A.length; i++) {
+            if (A.length - moves + i >= A.length) {
+                result[i] = A[i - moves];
             } else {
-                return A[i];
+                result[i] = A[A.length - moves + i];
             }
         }
         return result;
