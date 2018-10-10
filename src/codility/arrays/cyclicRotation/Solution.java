@@ -2,27 +2,26 @@ package codility.arrays.cyclicRotation;
 
 public class Solution {
 
-    public int[] solution(int[] arg, int moves) {
-        if (arg.length == 0) {
-            return arg;
+    public static int[] solution(int[] A, int K) {
+
+        if (A.length == 0) {
+            return A;
         }
 
-        int[] array = new int[arg.length];
-        if (moves >= arg.length) {
-            if (moves % arg.length == 0) {
-                return arg;
-            } else {
-                moves = (moves % arg.length);
-            }
+        int[] result = new int[A.length];
+        int moves = (K % A.length);
+
+        if (moves == 0) {
+            return A;
         }
 
-        for (int i = 0; i < arg.length; i++) {
-            if (arg.length - moves + i >= arg.length) {
-                array[i] = arg[i - moves];
+        for (int i = 0; i < A.length; i++) {
+            if (A.length - moves + i >= A.length) {
+                result[i] = A[i - moves];
             } else {
-                array[i] = arg[arg.length - moves + i];
+                result[i] = A[A.length - moves + i];
             }
         }
-        return array;
+        return result;
     }
 }
