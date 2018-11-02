@@ -21,7 +21,6 @@ public class Solution {
         for (int value : set) {
             result = value;
         }
-
         return result;
     }
 }
